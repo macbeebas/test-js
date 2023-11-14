@@ -1,0 +1,82 @@
+:root {
+  --dayOfWeek-bg-color: maroon;
+  --dayOfWeek-font-color: white;
+  --dayOfWeek-font-size: 72px;
+  --dayOfWeek-font-weight: normal;
+  /* bold - normal */
+  --dayOfWeek-font-caps: none;
+  /* capitalize - uppercase - none */
+  --dayOfWeek-text-letter-spacing: 5px;
+
+  --date-bg-color: white;
+  --date-font-color: black;
+  --date-font-size: 72px;
+  --date-font-weight: bold;
+  --date-font-caps: none;
+
+  --time-bg-color: blue;
+  --time-font-color: white;
+  --time-font-size: 72px;
+  --time-font-weight: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: whitesmoke;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  list-style-type: none;
+  max-width: 700px;
+  margin: auto;
+  border: 1px white solid;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn {
+  padding: 5px;
+  margin: 5px;
+  margin-top: 20px;
+}
+
+.timer {
+  text-decoration: none;
+}
+
+.dayOfWeek {
+  background-color: var(--dayOfWeek-bg-color);
+  color: var(--dayOfWeek-font-color);
+  font-size: var(--dayOfWeek-font-size);
+  font-weight: var(--dayOfWeek-font-weight);
+  text-transform: var(--dayOfWeek-font-caps);
+  text-size-adjust: var(--dayOfWeek-text-size-adjust);
+  letter-spacing: var(--dayOfWeek-text-letter-spacing);
+}
+
+.date {
+  background-color: var(--date-bg-color);
+  color: var(--date-font-color);
+  font-size: var(--date-font-size);
+  font-weight: var(--date-font-weight);
+  text-transform: var(--date-font-caps);
+}
+
+.time {
+  background-color: var(--time-bg-color);
+  color: var(--time-font-color);
+  font-size: var(--time-font-size);
+  font-weight: var(--time-font-weight);
+}

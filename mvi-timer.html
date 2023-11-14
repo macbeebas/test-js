@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVI timer</title>
+
+    <!---------------------------- CSS ---------------------------->
+    <style>
+      :root {
+        --dayOfWeek-bg-color: maroon;
+        --dayOfWeek-font-color: white;
+        --dayOfWeek-font-size: 10vw;
+        --dayOfWeek-font-weight: normal; /* bold - normal */
+        --dayOfWeek-font-caps: none; /* capitalize - uppercase - none */
+        --dayOfWeek-text-letter-spacing: 5px;
+
+        --date-bg-color: white;
+        --date-font-color: black;
+        --date-font-size: 10vw;
+        --date-font-weight: bold;
+        --date-font-caps: none;
+
+        --time-bg-color: blue;
+        --time-font-color: white;
+        --time-font-size: 10vw;
+        --time-font-weight: normal;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: black;
+        color: whitesmoke;
+        line-height: 1.5;
+        text-decoration: none;
+        text-align: center;
+        list-style-type: none;
+        max-width: 100vw;
+        margin: auto;
+        border: 1px white solid;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .btn {
+        padding: 5px;
+        margin: 5px;
+        margin-top: 20px;
+      }
+
+      .timer {
+        text-decoration: none;
+      }
+
+      .dayOfWeek {
+        background-color: var(--dayOfWeek-bg-color);
+        color: var(--dayOfWeek-font-color);
+        font-size: var(--dayOfWeek-font-size);
+        font-weight: var(--dayOfWeek-font-weight);
+        text-transform: var(--dayOfWeek-font-caps);
+        text-size-adjust: var(--dayOfWeek-text-size-adjust);
+        letter-spacing: var(--dayOfWeek-text-letter-spacing);
+      }
+
+      .date {
+        background-color: var(--date-bg-color);
+        color: var(--date-font-color);
+        font-size: var(--date-font-size);
+        font-weight: var(--date-font-weight);
+        text-transform: var(--date-font-caps);
+      }
+
+      .time {
+        background-color: var(--time-bg-color);
+        color: var(--time-font-color);
+        font-size: var(--time-font-size);
+        font-weight: var(--time-font-weight);
+      }
+    </style>
+  </head>
+
+  <!---------------------------- HTML ---------------------------->
+
+  <body>
+    <h1>Dzisiaj jest:</h1>
+    <ul class="timer">
+      <li class="dayOfWeek"></li>
+      <li class="date"></li>
+      <li class="time"></li>
+    </ul>
+    <button type="button" class="btn js-start">Start</button>
+    <button type="button" class="btn js-stop">Stop</button>
+
+    <!---------------------------- JS ---------------------------->
+    <script>
+      const nameOfDay = [
+        "niedziela",
+        "poniedziałek",
+        "wtorek",
+        "środa",
+        "czwartek",
+        "piątek",
+        "sobota",
+      ];
+
+      const nameOfMonth = [
+        "stycznia",
+        "lutego",
+        "marca",
+        "kwietnia",
+        "maja",
+        "czerwca",
+        "lipca",
+        "sierpnia",
+        "września",
+        "października",
+        "listopada",
+        "grudnia",
+      ];
+
+      function testNum(a) {
+        let result;
+        if (a < 10) {
+          result = "0";
+        } else {
+          result = "";
+        }
+        return result;
+      }
+
+      let date = new Date();
+
+      const timer = document.querySelector(".timer");
+      const dayOfWeekItem = document.querySelector(".dayOfWeek");
+      const timeItem = document.querySelector(".time");
+      const dateItem = document.querySelector(".date");
+
+      const startBtn = document.querySelector(".js-start");
+      const stopBtn = document.querySelector(".js-stop");
+      let timerId = null;
+
+      startBtn.addEventListener("click", () => {
+        startBtn.disabled = 1;
+
+        timerId = setInterval(() => {
+          date = new Date();
+
+          dayOfWeekItem.textContent = nameOfDay[date.getDay()];
+
+          timeItem.textContent =
+            testNum(date.getHours()) +
+            date.getHours() +
+            ":" +
+            testNum(date.getMinutes()) +
+            date.getMinutes() +
+            ":" +
+            testNum(date.getSeconds()) +
+            date.getSeconds();
+
+          dateItem.textContent =
+            date.getDate() +
+            " " +
+            nameOfMonth[date.getMonth()] +
+            " " +
+            date.getFullYear();
+        }, 1000);
+      });
+
+      stopBtn.addEventListener("click", () => {
+        startBtn.disabled = 0;
+        clearInterval(timerId);
+        console.log("ZATRZYMANY!");
+        timerId = null;
+      });
+    </script>
+  </body>
+</html>
